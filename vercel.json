@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/src/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/src/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+  "env": {
+    "VAPI_API_KEY": "@vapi_api_key",
+    "REACT_APP_VAPI_PUBLIC_KEY": "@vapi_public_key",
+    "REACT_APP_VAPI_ASSISTANT_ID": "@vapi_assistant_id"
+  }
+}
