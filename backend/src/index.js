@@ -11,7 +11,10 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'https://real-hackathon25-1.onrender.com'
+  ],
   credentials: true
 }));
 app.use(bodyParser.json());
